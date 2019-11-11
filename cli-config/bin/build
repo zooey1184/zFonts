@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+const tplObj = require(`${__dirname}/../template`)
+const localTemplate = `${__dirname}/../template.json`
+const p = require('./../tools/getPro')
+const env = process.env.runEnv
+const PRO = process.env.pro || tplObj.usePro
+const proName = process.env.pro ? p() : p(PRO)
+const fs = require('fs')
+if (!PRO || (PRO && !tplObj[proName.toString()])) {
+  let obj = {
+    useEnv: env,
+    [env]: {
+      history: true,
+      baseUrl: env === 'local' ? '/' : './',
+      decorator: [],
+      pro: proName
+    }
+  }
+  tplObj[proName.toString()] = obj
+}
+tplObj.usePro = proName
+
+fs.writeFile(localTemplate, JSON.stringify(tplObj), 'utf-8', (err, res) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(`运行环境：${process.env.runEnv}\n`);
+  console.log(tplObj[proName.toString()][process.env.runEnv]);
+})

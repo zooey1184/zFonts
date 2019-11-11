@@ -1,0 +1,104 @@
+@fs: 15px;
+@h: 40px;
+
+.header {
+  height: 50px;
+  background: #bbded6;
+  font-size: 20px;
+  color: #333
+}
+
+.btn {
+  width: 100px;
+  height: @h;
+  position: relative;
+  font-size: @fs;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+.btn_red {
+  background: #fae3d9;
+  color: #204969
+}
+.btn_red_main {
+  background: #ED5485;
+  color: #fff
+}
+
+.radius {
+  border-radius: 8px
+}
+
+.mg_f {
+  margin: 10px;
+  margin-right: 0
+}
+
+.bd_n {
+  border: none;
+  outline: none;
+}
+
+#file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.originText {
+  width: 100%;
+  height: 150px;
+  font-size: @fs;
+  padding: 10px;
+}
+
+// action
+.inputPane {
+  width: 250px;
+  height: @h;
+  margin-right: 20px;
+  font-size: @fs;
+  padding-left: 10px;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.outputPane {
+  background: #E5F6E4;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 40px;
+}
+
+.iconFonts {
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+
+  /* Non-prefixed version, currentlynot supported by any browser */
+  &:hover {
+    color: #ff502f
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.iconFontText {
+  margin-left: 5px;
+}

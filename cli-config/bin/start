@@ -1,0 +1,127 @@
+#!usr/bin/env node
+const inquirer = require('inquirer')
+const chalk = require('chalk')
+const fs = require('fs')
+const tplObj = require(`${__dirname}/../template`)
+const getPro = require('./../tools/getPro')
+const choosePro = require('./../tools/getDir')
+const localTemplate = `${__dirname}/../template.json`
+const runEnv = process.env.runEnv
+const cliConfig = require('./../index')
+let pro = getPro() || []
+
+// 处理前置流程
+function preFn (e) {
+  // 是否是历史版本打包 && 历史版本中该项目的具体环境存在
+  if (e.history && tplObj[e.pro] && tplObj[e.pro][runEnv]) {
+    tplObj.usePro = e.pro
+    pro = getPro(e.pro)
+    return false
+  } else {
+    tplObj.usePro = e.pro
+    pro = getPro(e.pro)
+    return true
+  }
+}
+
+// 处理回答
+const dealAns = (r) => {
+  if (!r.history || !tplObj[pro]) {
+    // 处理新建版本时
+    tplObj[pro] = {}
+    tplObj[pro].useEnv = runEnv
+    tplObj[pro][runEnv] = r
+  } else {
+    // 处理历史版本时
+    tplObj[pro].useEnv = runEnv
+    if (!tplObj[pro][runEnv]) {
+      tplObj[pro][runEnv] = {}
+    }
+    for (let i in r) {
+      tplObj[pro][runEnv][i] = r[i]
+    }
+  }
+}
+
+let question = [
+  {
+    name: 'pro',
+    type: 'checkbox',
+    message: '请选择启动项目',
+    choices: choosePro,
+    default: [...pro],
+    validate: (val) => {
+      if (choosePro.length < 1) {
+        return `请先在 ${cliConfig.baseUrl} 目录下创建项目`
+      }
+      if (val.length < 1) {
+        return '请选择需要启动的项目'
+      }
+      return true
+    }
+  },
+  {
+    name: 'history',
+    type: 'confirm',
+    message: '是否使用该项目的历史版本打包',
+    default: true
+  },
+  {
+    name: 'baseUrl',
+    type: 'input',
+    message: '请输入打包路径，为该项目的资源路径，可以是cdn路径',
+    default: '',
+    when: function (e) {
+      return preFn(e)
+    }
+  },
+  {
+    name: 'decorator',
+    type: 'checkbox',
+    message: '请勾选修饰符',
+    choices: [
+      'noCss',
+      'rem',
+      'dll'
+    ],
+    when: function (e) {
+      return preFn(e)
+    }
+  },
+  {
+    name: 'dll',
+    type: 'checkbox',
+    message: '预打包库（暂未开启）',
+    choices: [
+      'vue',
+      'vue-router',
+      'vuex'
+    ],
+    when: function (e) {
+      return e.decorator && e.decorator.find(item => item === 'dll')
+    },
+    validate: (val) => {
+      if (val.length < 1) {
+        return '请至少选择一项预打包的库'
+      }
+      return true
+    }
+  }
+]
+
+/**
+ * 执行交互命令
+ * 执行环境-》执行流
+ */
+inquirer
+  .prompt(question).then(answers => {
+    dealAns(answers)
+    fs.writeFile(localTemplate, JSON.stringify(tplObj), 'utf-8', err => {
+      if (err) {
+        console.log('出错了')
+        return
+      }
+      console.log('\n', chalk.green('使用打包流：\n'))
+      console.log(tplObj[pro])
+    })
+  })

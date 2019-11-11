@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+/*淡入淡出*/
+.fade-enter-active {
+  transition: all .2s linear;
+}
+
+.fade-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/*淡入淡出*/
+.fadeLong-enter-active {
+  transition: all .4s linear;
+}
+
+.fadeLong-leave-active {
+  transition: all .1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+.fadeLong-enter,
+.fadeLong-leave-to {
+  opacity: 0;
+}
+
+/* 右进 */
+.rightOffset-enter-active,
+.rightOffset-leave-active {
+  transition: all 0.5s ease-out;
+}
+
+.rightOffset-enter,
+.rightOffset-leave-to {
+  transform: translateX(40px);
+  opacity: 0;
+}
+
+/* 上进 */
+.topOffset-enter-active,
+.topOffset-leave-active {
+  transition: all 0.5s ease-out;
+}
+
+.topOffset-enter,
+.topOffset-leave-to {
+  transform: translateY(-40px);
+  opacity: 0;
+}
+
+/*bounce*/
+.bounce-enter-active,
+.bounce-leave-active {
+  transition: all 0.3s linear;
+}
+
+.bounce-enter,
+.bounce-leave-to {
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.bounce_sm-enter,
+.bounce_sm-leave-to {
+  transform: scale(0.8);
+  opacity: 0;
+}
+
+.bounce_sm-enter-active,
+.bounce_sm-leave-active {
+  transition: all .3s ease-out;
+}
+
+/*slide-toggle*/
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.4s linear;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/*scale-toggle*/
+.scale-enter-active,
+.scale-leave-active {
+  transition: all 0.3s linear;
+}
+
+.scale-enter,
+.scale-leave-to {
+  transform: scale(0);
+  opacity: 0;
+}
+
+/*rotate-toggle*/
+.rotate-enter-active,
+.rotate-leave-active {
+  transition: all 0.3s linear;
+}
+
+.rotate-enter,
+.rotate-leave-to {
+  transform: rotate(180deg) scale(0.5);
+  opacity: 0;
+}
+
+/* 小浮动上移 */
+.toastSlideUp-enter-active,
+.toastSlideUp-leave-active {
+  transition: all 0.3s linear;
+}
+
+.toastSlideUp-enter,
+.toastSlideUp-leave-to {
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+/* 小浮动下移 */
+.toastSlideDown-enter-active,
+.toastSlideDown-leave-active {
+  transition: all 0.3s linear;
+}
+
+.toastSlideDown-enter,
+.toastSlideDown-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.slideScale-enter-active,
+.slideScale-leave-active {
+  transition: all 0.3s linear;
+}
+
+.slideScale-enter,
+.slideScale-leave-to {
+  transform: translateY(20px) scale(0.9);
+  opacity: 0;
+}
+
+.rotateTrans-enter-active,
+.rotateTrans-leave-active {
+  transition: all 0.3s linear;
+}
+
+.rotateTrans-enter,
+.rotateTrans-leave-to {
+  transform: translateX(-80px) translateY(10px) rotate(-30deg);
+  opacity: 0;
+}
