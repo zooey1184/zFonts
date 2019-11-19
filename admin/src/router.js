@@ -8,9 +8,7 @@ const proName = '/zFont'
 const fs = require('fs')
 const jwt = require('jsonwebtoken');
 const skey = 'ORRdSRXnUI4XrFlCxEadFjv_X25xk_ks949JCofk'
-const whiteList = {
-  admin: 'admin123'
-}
+const whiteList = require('./whiteList')
 
 // 获取可支持的下拉字体列表
 const getFontList = () => {
