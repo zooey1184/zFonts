@@ -1,1 +1,1 @@
-{"usePro":["index"],"index":{"useEnv":"pro","pro":{"pro":["index"],"history":false,"baseUrl":"https://uat.51bmsh.com/lanjian/application/views/h5/pages/zFonts/","decorator":[]}}}
+{"usePro":["index"],"index":{"useEnv":"local","pro":{"pro":["index"],"history":false,"baseUrl":"https://uat.51bmsh.com/lanjian/application/views/h5/pages/zFonts/","decorator":[]},"local":{"pro":["index"],"history":true,"baseUrl":"","decorator":[]}}}
